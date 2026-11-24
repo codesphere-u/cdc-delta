@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cdc-delta"
+version = "0.1.0"
+description = "Bandwidth-miserly pure-Python Gear-hash FastCDC content-defined chunker, SHA-256 resumable chunk store, and delta-patch sync engine for intermittent 2G/3G links."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "fastcdc",
+    "content-defined-chunking",
+    "delta-sync",
+    "resumable",
+    "bandwidth",
+    "deduplication",
+    "offline-first",
+    "networking",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+cdc-delta = "cdc_delta.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/cdc-delta"
+Repository = "https://github.com/codesphere-u/cdc-delta"
+Issues = "https://github.com/codesphere-u/cdc-delta/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cdc_delta"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["cdc_delta"]
